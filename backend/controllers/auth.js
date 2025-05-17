@@ -5,12 +5,12 @@ const {
 const { createUser, findUserByEmail } = require("./users");
 
 const register = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, fullname } = req.body;
   const existingUser = await findUserByEmail(email);
   if (existingUser) {
     throw new UnauthorizedException("User already exists");
   }
-  const user = await createUser({ email, password });
+  const user = await createUser({ email, password, fullname });
   const token = user.generateAuthToken();
   res.status(201).json({
     user:user.sanitize(),
