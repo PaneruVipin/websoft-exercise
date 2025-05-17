@@ -15,7 +15,7 @@ function setupSocket(io) {
 
     // Track user connection
     socket.on("user_connected", async () => {
-      onlineUsers.set(userId, socket.id);
+      onlineUsers.set(userId.toString(), socket.id);
       await User.findByIdAndUpdate(userId, { isOnline: true });
       io.emit("user_status_change", { userId, isOnline: true });
     });
@@ -29,6 +29,7 @@ function setupSocket(io) {
         });
 
         const receiverSocket = onlineUsers.get(receiver);
+        console.log("Receiver socket ID:", receiverSocket,onlineUsers);
         if (receiverSocket) {
           io.to(receiverSocket).emit("receive_message", message);
         }

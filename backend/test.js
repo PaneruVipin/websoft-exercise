@@ -3,7 +3,7 @@ require("dotenv").config();
 const socket = io("http://localhost:3000", {
   auth: {
     token:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjcwZjg4MDE2OGRiY2I3NTk5YTJiZSIsImlhdCI6MTc0NzUxMTM5MCwiZXhwIjoxNzQ3NTE0OTkwfQ.wfjHDMKGyndkzfp9Fb2oMzDFg_6e2sMA4PHlxKrlQzA",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjcwZjg4MDE2OGRiY2I3NTk5YTJiZSIsImlhdCI6MTc0NzUyMTAzNCwiZXhwIjoxNzQ3NjA3NDM0fQ.ucMvxt2q_0t5p1Gz7I-HEbyJVcpHHfA2w3oWLslMrCg",
   },
 });
 
