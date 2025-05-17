@@ -112,9 +112,8 @@ const get_threads = async (req, res, next) => {
 const get_messages_with_user = async (req, res) => {
   try {
     const userId = req.user._id;
-    const otherUserId = mongoose.Types.ObjectId.createFromHexString(
-      req.params.id
-    );
+    const otherUserId = mongoose.Types.ObjectId.createFromHexString(req.params.id);
+
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 30;
     const skip = (page - 1) * limit;
@@ -127,14 +126,22 @@ const get_messages_with_user = async (req, res) => {
     })
       .sort({ createdAt: -1 })
       .skip(skip)
-      .limit(limit);
+      .limit(limit)
+      .lean(); // use lean() to allow modifying returned objects
 
-    res.json({ page, limit, messages });
+    // Add direction flag for frontend
+    const processedMessages = messages.map((msg) => ({
+      ...msg,
+      direction: String(msg.sender) === String(userId) ? "sent" : "received",
+    }));
+
+    res.json({ page, limit, messages: processedMessages });
   } catch (err) {
     console.error(err);
     throw new InternalServerErrorException("Error fetching messages");
   }
 };
+
 
 const markThreadAsRead = async (req, res, next) => {
   try {
