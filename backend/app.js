@@ -9,8 +9,9 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var authRouter = require("./routes/auth");
 require("dotenv").config();
+const cors = require('cors');
 var app = express();
-
+app.use(cors({}))
 // mongoose connection
 mongoose
   .connect(process.env.MONGO_URI, {})
