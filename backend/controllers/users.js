@@ -27,7 +27,7 @@ const get_users = async (req, res, next) => {
 
     if (search) {
       matchConditions.$or = [
-        { name: { $regex: regex } },
+        { fullname: { $regex: regex } },
         { email: { $regex: regex } },
       ];
     }
