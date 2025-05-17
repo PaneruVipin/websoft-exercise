@@ -1,0 +1,21 @@
+
+
+# Secret files
+.env
+*.env
+
+
+# === Node / Frontend (if using React, Next.js, etc.) ===
+node_modules/
+*.tsbuildinfo
+*.lock
+dist/
+build/
+.next/
+out/
+
+
+**node_modules/*
+**/dist/*
+**/build/*
+**.next/*
