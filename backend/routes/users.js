@@ -1,6 +1,7 @@
 var express = require("express");
 const authenticate = require("../middlewares/api-auth");
 const { get_users } = require("../controllers/users");
+const { UnauthorizedException } = require("../execeptions/cutsom-exception");
 var router = express.Router();
 
 router.get("/me", authenticate, (req, res) => {
