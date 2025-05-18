@@ -10,7 +10,7 @@ function setupSocket(io) {
 
   // Handle socket connections
   io.on("connection", (socket) => {
-    const userId = socket.user._id;
+    const userId = socket.user?._id;
     console.log("New client connected");
 
     // Track user connection
