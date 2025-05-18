@@ -1,3 +1,6 @@
+const {
+  InternalServerErrorException,
+} = require("../execeptions/cutsom-exception");
 const User = require("../models/User");
 
 const findUserByEmail = async (email) => {
@@ -23,7 +26,7 @@ const get_users = async (req, res, next) => {
     const search = req.query.q?.trim() || "";
     const regex = new RegExp(search, "i");
 
-    const matchConditions = {};
+    const matchConditions = { _id: { $ne: req.user._id } };
 
     if (search) {
       matchConditions.$or = [
